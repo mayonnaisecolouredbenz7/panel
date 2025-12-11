@@ -965,10 +965,10 @@ def link_axes(root_view, root_model):
             try:
                 compstart = convert_timestamp(axis.start)
                 compend = convert_timestamp(axis.end)
+                if compstart > compend:
+                    end, start = start, end
             except Exception:
                 pass
-            if compstart > compend:
-                end, start = start, end
             axis.start = start
             axis.end = end
         for fig, p, pax, _ in axes[1:]:
