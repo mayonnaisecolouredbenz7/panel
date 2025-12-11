@@ -929,7 +929,7 @@ def link_axes(root_view, root_model):
     from holoviews.core.options import Store
     from holoviews.core.util import max_range, unique_iterator
     from holoviews.plotting.bokeh.element import ElementPlot
-
+    from holoviews.plotting.bokeh.util import convert_timestamp
     ref = root_model.ref['id']
     range_map = defaultdict(list)
     for pane in panes:
@@ -962,7 +962,12 @@ def link_axes(root_view, root_model):
                 (ax[-1].start, ax[-1].end) for ax in axes
                 if isinstance(ax[-1], Range1d)
             ])
-            if axis.start > axis.end:
+            try:
+                compstart = convert_timestamp(axis.start)
+                compend = convert_timestamp(axis.end)
+            except Exception:
+                pass
+            if compstart > compend:
                 end, start = start, end
             axis.start = start
             axis.end = end
