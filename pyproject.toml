@@ -12,7 +12,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "panel"
-dynamic = ["version"]
+version = "1.8.0a0"
 description = 'The powerful data exploration & web app framework for Python.'
 readme = "README.md"
 license = { text = "BSD" }
